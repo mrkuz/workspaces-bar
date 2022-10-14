@@ -25,9 +25,6 @@ class WorkspacesBar extends PanelMenu.Button {
 		this.workspaces_settings = new Gio.Settings({ schema: WORKSPACES_SCHEMA });
 		this.workspaces_names_changed = this.workspaces_settings.connect(`changed::${WORKSPACES_KEY}`, this._update_workspaces_names.bind(this));
 	
-		// hide Activities button
-		this._show_activities(false);
-	
 		// bar creation
 		this.ws_bar = new St.BoxLayout({});
         this._update_workspaces_names();
@@ -40,9 +37,8 @@ class WorkspacesBar extends PanelMenu.Button {
 		this._windows_changed = Shell.WindowTracker.get_default().connect('tracked-windows-changed', this._update_ws.bind(this));
 	}
 
-	// remove signals, restore Activities button, destroy workspaces bar
+	// remove signals, destroy workspaces bar
 	_destroy() {
-		this._show_activities(true);
 		if (this._ws_active_changed) {
 			global.workspace_manager.disconnect(this._ws_active_changed);
 		}
@@ -60,18 +56,6 @@ class WorkspacesBar extends PanelMenu.Button {
 		}
 		this.ws_bar.destroy();
 		super.destroy();
-	}
-	
-	// hide Activities button
-	_show_activities(show) {
-		this.activities_button = Main.panel.statusArea['activities'];
-		if (this.activities_button) {
-			if (show && !Main.sessionMode.isLocked) {
-				this.activities_button.container.show();
-			} else {
-				this.activities_button.container.hide();
-			}
-		}
 	}
 	
 	// update workspaces names
@@ -133,7 +117,7 @@ class Extension {
 
     enable() {
     	this.workspaces_bar = new WorkspacesBar();
-    	Main.panel.addToStatusArea('workspaces-bar', this.workspaces_bar, 0, 'left');
+    	Main.panel.addToStatusArea('workspaces-bar', this.workspaces_bar, 1, 'left');
     }
 
     disable() {
