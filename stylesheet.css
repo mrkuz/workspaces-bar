@@ -39,29 +39,23 @@
 /* non-framed version */
 
 .desktop-label-nonempty-active {
-  margin-left: 0px;
-  margin-right: 8px;
-  background-color: rgba(154, 154, 154, 0.7);
-  border-radius: 4px;
+  padding: 1px;
+  margin: 2px;
+  border: 1px solid #fff;
 }
 
 .desktop-label-nonempty-inactive {
-  margin-left: 0px;
-  margin-right: 8px;
-  background-color: rgba(96, 96, 96, 0.7);
-  border-radius: 4px;
+  padding: 1px;
+  margin: 2px;
 }
 
 .desktop-label-empty-active {
-  margin-left: 0px;
-  margin-right: 8px;
-  background-color: rgba(154, 154, 154, 0.7);
-  border-radius: 4px;
+  padding: 1px;
+  margin: 2px;
+  border: 1px solid #fff;
 }
 
 .desktop-label-empty-inactive {
-  margin-left: 0px;
-  margin-right: 8px;
-  background-color: rgba(0, 0, 0, 0.0);
-  border-radius: 4px;
+  padding: 1px;
+  margin: 2px;
 }
